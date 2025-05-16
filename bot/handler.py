@@ -1,3 +1,4 @@
+import asyncio
 from pyrogram import Client, filters
 from config import API_ID, API_HASH, BOT_TOKEN, OWNER_ID
 from userbot.forwarder import trigger_forward
@@ -14,7 +15,7 @@ async def handle_forwarded_msg(client, message):
 
     await message.reply("Pesan diterima, mulai sebar ke grup...")
     logger.info(f"Trigger forward: Pesan dari {message.forward_from_chat.title}")
-    
+
     await trigger_forward(message.forward_from_chat.id, message.forward_from_message_id)
 
     await message.reply("Forward selesai.")
@@ -23,4 +24,4 @@ async def handle_forwarded_msg(client, message):
 async def start_bot():
     await bot.start()
     logger.info("[BOT] Aktif")
-    await bot.idle()
+    await asyncio.Event().wait()  # Menunggu selamanya agar bot tetap hidup
