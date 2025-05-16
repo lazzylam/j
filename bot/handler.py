@@ -21,3 +21,8 @@ async def handle_any_msg(client, message):
     else:
         await message.reply("Ini bukan pesan yang diforward dari channel.")
         logger.warning("Forward gagal: Tidak ditemukan asal channel.")
+
+async def start_bot():
+    await bot.start()
+    logger.info("[BOT] Aktif")
+    await asyncio.Event().wait()
