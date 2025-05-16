@@ -26,3 +26,4 @@ async def start_bot():
     await bot.start()
     logger.info("[BOT] Aktif")
     await asyncio.Event().wait()
+    logger.info("[BOT] Masuk idle")  # Tambahkan ini
